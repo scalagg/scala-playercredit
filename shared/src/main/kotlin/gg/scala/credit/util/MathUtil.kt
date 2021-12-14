@@ -9,6 +9,12 @@ import kotlin.math.ln
  * @since 12/13/2021
  */
 object MathUtil {
+    
+    @JvmStatic
+    val FORMAT = DecimalFormat("#.##").also {
+        it.roundingMode = RoundingMode.CEILING
+    }
+    
     @JvmStatic
     private fun calculateDecay(n: Double, max: Double, rate: Double): Double {
         return ln(n / max) / ln(1 - rate)
@@ -19,11 +25,10 @@ object MathUtil {
         val decayRate = 0.5
         val maxCredit = 2000.0
         val maxChange = 100.0
-        val format = DecimalFormat("#.##")
 
-        format.roundingMode = RoundingMode.CEILING
-
-        var multiplier = calculateDecay(currentCredit, maxCredit, decayRate)
+        var multiplier = calculateDecay(
+            currentCredit, maxCredit, decayRate
+        )
 
         if (multiplier > 2.0) {
             multiplier = 2.0
@@ -43,7 +48,7 @@ object MathUtil {
             actual = 0.0
         }
 
-        return format.format(actual).toDouble()
+        return FORMAT.format(actual).toDouble()
     }
 
     @JvmStatic
