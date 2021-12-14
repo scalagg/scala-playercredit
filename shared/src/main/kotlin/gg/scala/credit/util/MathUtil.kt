@@ -5,11 +5,10 @@ import java.text.DecimalFormat
 import kotlin.math.ln
 
 /**
- * @author Orf1
- * @since 12/13/2021
+ * @project scala-playercredit
+ * @author Orf1 on 12/14/2021
  */
 object MathUtil {
-    
     @JvmStatic
     val FORMAT = DecimalFormat("#.##").also {
         it.roundingMode = RoundingMode.CEILING
