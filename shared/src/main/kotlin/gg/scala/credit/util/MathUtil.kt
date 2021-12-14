@@ -4,8 +4,16 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import kotlin.math.ln
 
+/**
+ * @author Orf1
+ * @since 12/13/2021
+ */
 object MathUtil {
-    
+    @JvmStatic
+    private fun calculateDecay(n: Double, max: Double, rate: Double): Double {
+        return ln(n / max) / ln(1 - rate)
+    }
+
     @JvmStatic
     fun calculateChange(currentCredit: Double, creditChange: Double): Double {
         val decayRate = 0.5
@@ -15,7 +23,7 @@ object MathUtil {
 
         format.roundingMode = RoundingMode.CEILING
 
-        var multiplier = ln(currentCredit / maxCredit) / ln(1 - decayRate).toDouble()
+        var multiplier = calculateDecay(currentCredit, maxCredit, decayRate)
 
         if (multiplier > 2.0) {
             multiplier = 2.0
