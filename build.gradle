@@ -1,14 +1,60 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.0'
 }
 
-group 'gg.scala'
-version '1.0-SNAPSHOT'
+allprojects {
+    group 'gg.scala.credit'
+    version '1.0.0'
 
-repositories {
-    mavenCentral()
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url 'https://oss.sonatype.org/content/repositories/central' }
+
+        mavenCentral()
+        mavenLocal()
+
+        maven { url "https://repo.lucko.me" }
+    }
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+subprojects {
+    apply plugin: "maven-publish"
+    apply plugin: "com.github.johnrengelman.shadow"
+    apply plugin: "org.jetbrains.kotlin.jvm"
+
+    dependencies {
+        compileOnly "org.jetbrains.kotlin:kotlin-stdlib"
+        compileOnly "org.spigotmc:spigot:1.16.5-R0.1-SNAPSHOT"
+        compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-RC2'
+
+        implementation "com.github.cryptomorin:XSeries:8.5.0.1"
+        implementation "me.lucko:helper:5.6.8"
+    }
+
+    compileKotlin {
+        kotlinOptions.javaParameters = true
+        kotlinOptions.jvmTarget = "1.8"
+    }
+
+    shadowJar {
+        archiveClassifier.set("")
+
+        exclude "**/*.kotlin_metadata"
+        exclude "**/*.kotlin_builtins"
+        exclude "META-INF/"
+
+        archiveFileName = "player-credit_${project.name}.jar"
+    }
+
+    publishing {
+        publications {
+            shadow(MavenPublication) { publication ->
+                project.shadow.component(publication)
+            }
+        }
+    }
+
+    tasks.build.dependsOn(shadowJar, publishing)
 }

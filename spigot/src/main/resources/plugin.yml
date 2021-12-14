@@ -1,0 +1,10 @@
+# move to spigot module
+name: player-credit
+version: 1.0-SNAPSHOT
+main: gg.scala.credit.PlayerCreditPlugin
+
+author: Scala
+website: https://scala.gg
+
+softdepend:
+  - helper

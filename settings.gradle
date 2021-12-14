@@ -1,2 +1,3 @@
 rootProject.name = 'scala-playercredit'
-
+include "shared"
+include "spigot"
