@@ -7,9 +7,9 @@ import kotlin.math.ln
 object MathUtil {
     @JvmStatic
     fun calculateChange(currentCredit: Double, creditChange: Double):Double {
-        val decayRate = 0.5 //Default = 0.5
-        val maxCredit = 2000.0 //Default = 2000.0
-        val maxChange = 100.0 //Default = 100.0
+        val decayRate = 0.5
+        val maxCredit = 2000.0
+        val maxChange = 100.0
         val format = DecimalFormat("#.##")
 
         format.roundingMode = RoundingMode.CEILING
@@ -36,6 +36,7 @@ object MathUtil {
 
         return format.format(actual).toDouble()
     }
+
     @JvmStatic
     fun calculateNew(current: Double, change: Double):Double {
         return current + calculateChange(current, change)
