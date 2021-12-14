@@ -1,0 +1,21 @@
+config-version: 1.0.0
+
+levels:
+  2000:
+    title: "Impossible"
+  1500:
+    title: "Really Trusted"
+  1200:
+    title: "Trusted"
+  1000:
+    title: "Normal"
+  800:
+    title: "Distrusted"
+  500:
+    title: "Really Distrusted"
+  300:
+    title: "Banned"
+
+#Math Stuff
+decay-max: 2000
+decay-rate: 0.5
