@@ -2,6 +2,7 @@ package gg.scala.credit.player
 
 import gg.scala.credit.player.audit.CreditPlayerAuditLog
 import gg.scala.credit.player.status.PlayerStatus
+import gg.scala.credit.player.status.PlayerStatus.Companion.getWithinRange
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
@@ -34,13 +35,7 @@ class CreditPlayer(
 
     fun calculateStatusFromCredits()
     {
-        var statusList = PlayerStatus.values();
-        statusList = statusList.sortedArray()
-        for (s in statusList) {
-            if (credits >= s.minimum) {
-                status = s
-            }
-        }
+        status = getWithinRange(credits)
     }
 
     fun save(): CompletableFuture<Void>

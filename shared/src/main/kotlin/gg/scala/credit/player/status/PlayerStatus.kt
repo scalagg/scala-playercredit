@@ -7,10 +7,24 @@ package gg.scala.credit.player.status
 enum class PlayerStatus(
 
     // TODO: 12/14/2021 Convert this to a Component using kyori adventure's global platform
-    val minimum: Double,
+    val range: IntRange,
     val formatted: String
 )
 {
-    IMMUNE(2000.0, "Immune"),
-    NORMAL(1000.0, "Normal")
+    NORMAL(1000..1999, "Normal"),
+    IMMUNE(2000..2999, "Immune");
+
+    companion object
+    {
+        @JvmStatic
+        val VALUES = values()
+
+        @JvmStatic
+        fun getWithinRange(credits: Int): PlayerStatus
+        {
+            return VALUES.firstOrNull {
+                it.range.contains(credits)
+            } ?: NORMAL
+        }
+    }
 }
