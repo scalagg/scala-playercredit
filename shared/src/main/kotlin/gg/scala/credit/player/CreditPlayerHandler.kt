@@ -3,12 +3,7 @@ package gg.scala.credit.player
 import com.solexgames.datastore.commons.connection.impl.MongoConnection
 import com.solexgames.datastore.commons.layer.impl.MongoStorageLayer
 import gg.scala.credit.PlayerCredit
-import me.lucko.helper.Events
-import org.bukkit.ChatColor
 import org.bukkit.entity.Player
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent
-import org.bukkit.event.player.PlayerJoinEvent
-import org.bukkit.event.player.PlayerQuitEvent
 import java.util.*
 import kotlin.properties.Delegates
 
