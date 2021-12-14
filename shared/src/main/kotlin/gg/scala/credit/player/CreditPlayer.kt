@@ -11,11 +11,13 @@ import java.util.concurrent.CompletableFuture
  */
 
 //TEMP METHOD FOR TESTING
-fun main(args: Array<String>) {
-    val player = CreditPlayer("", UUID.randomUUID())
+fun main()
+{
+    val player = CreditPlayer("CONSOLE", UUID.randomUUID())
     player.credits = 2000
     player.calculateStatusFromCredits()
-    println(player.credits)
+
+    println("Credit amount: ${player.credits}")
 }
 
 class CreditPlayer(

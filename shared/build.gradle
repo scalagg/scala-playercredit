@@ -1,0 +1,8 @@
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-RC2'
+    implementation 'com.github.GrowlyX:data-store:0249e4d2a5'
+
+    implementation "me.lucko:helper:5.6.8"
+    implementation "co.aikar:acf-paper:0.5.0-SNAPSHOT"
+}

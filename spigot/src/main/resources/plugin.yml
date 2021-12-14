@@ -1,4 +1,3 @@
-# move to spigot module
 name: player-credit
 version: 1.0-SNAPSHOT
 main: gg.scala.credit.PlayerCreditPlugin
