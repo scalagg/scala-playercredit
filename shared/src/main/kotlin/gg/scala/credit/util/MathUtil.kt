@@ -5,8 +5,9 @@ import java.text.DecimalFormat
 import kotlin.math.ln
 
 object MathUtil {
+    
     @JvmStatic
-    fun calculateChange(currentCredit: Double, creditChange: Double):Double {
+    fun calculateChange(currentCredit: Double, creditChange: Double): Double {
         val decayRate = 0.5
         val maxCredit = 2000.0
         val maxChange = 100.0
@@ -14,7 +15,7 @@ object MathUtil {
 
         format.roundingMode = RoundingMode.CEILING
 
-        var multiplier = (ln(currentCredit/maxCredit))/(ln(1-decayRate))
+        var multiplier = ln(currentCredit / maxCredit) / ln(1 - decayRate).toDouble()
 
         if (multiplier > 2.0) {
             multiplier = 2.0
@@ -24,13 +25,13 @@ object MathUtil {
             multiplier = 0.0
         }
 
-        var actual = creditChange*multiplier
+        var actual = creditChange * multiplier
 
         if (actual > maxChange) {
             actual = maxChange
         }
 
-        if (actual < 0.001 || actual+currentCredit > maxCredit) {
+        if (actual < 0.001 || actual + currentCredit > maxCredit) {
             actual = 0.0
         }
 
@@ -38,7 +39,7 @@ object MathUtil {
     }
 
     @JvmStatic
-    fun calculateNew(current: Double, change: Double):Double {
+    fun calculateNew(current: Double, change: Double): Double {
         return current + calculateChange(current, change)
     }
 }
