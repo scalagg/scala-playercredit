@@ -1,6 +1,7 @@
 package gg.scala.credit.player
 
 import gg.scala.credit.player.audit.CreditPlayerAuditLog
+import gg.scala.credit.player.status.PlayerStatus
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
@@ -14,10 +15,16 @@ class CreditPlayer(
     val uniqueId: UUID
 )
 {
-    // TODO: 12/14/2021 make a default within the configuration 
+    // TODO: 12/14/2021 make a default within the configuration
     var credits = 0
-    
+    var status = PlayerStatus.SOMETHING
+
     val auditLog = CreditPlayerAuditLog()
+
+    fun calculateStatusFromCredits()
+    {
+        TODO("set the [status] to a new field based on the current credit amount")
+    }
 
     fun save(): CompletableFuture<Void>
     {
