@@ -10,23 +10,6 @@ import java.util.concurrent.CompletableFuture
  * @author GrowlyX
  * @since 12/13/2021
  */
-
-fun main()
-{
-    val player = CreditPlayer("CONSOLE", UUID.randomUUID())
-    player.credits = 2000
-    player.updateStatus()
-
-    println("Player Credit: ${player.credits}")
-    println("Player Status: ${player.status}")
-
-    player.credits = 1200
-    player.updateStatus()
-
-    println("Player Credit: ${player.credits}")
-    println("Player Status: ${player.status}")
-}
-
 class CreditPlayer(
     var username: String,
     @Transient
