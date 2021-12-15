@@ -2,7 +2,7 @@ package gg.scala.credit.player
 
 import gg.scala.credit.player.audit.CreditPlayerAuditLog
 import gg.scala.credit.player.status.PlayerStatus
-import gg.scala.credit.player.status.PlayerStatus.Companion.getWithinRange
+import gg.scala.credit.player.status.PlayerStatus.Companion.getStatusWithinRange
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
@@ -11,14 +11,20 @@ import java.util.concurrent.CompletableFuture
  * @since 12/13/2021
  */
 
-//TEMP METHOD FOR TESTING
 fun main()
 {
     val player = CreditPlayer("CONSOLE", UUID.randomUUID())
     player.credits = 2000
-    player.calculateStatusFromCredits()
+    player.updateStatus()
 
-    println("Credit amount: ${player.credits}")
+    println("Player Credit: ${player.credits}")
+    println("Player Status: ${player.status}")
+
+    player.credits = 1200
+    player.updateStatus()
+
+    println("Player Credit: ${player.credits}")
+    println("Player Status: ${player.status}")
 }
 
 class CreditPlayer(
@@ -33,9 +39,9 @@ class CreditPlayer(
 
     val auditLog = CreditPlayerAuditLog()
 
-    fun calculateStatusFromCredits()
+    fun updateStatus()
     {
-        status = getWithinRange(credits)
+        status = getStatusWithinRange(credits)
     }
 
     fun save(): CompletableFuture<Void>

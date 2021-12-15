@@ -20,7 +20,7 @@ enum class PlayerStatus(
         val VALUES = values()
 
         @JvmStatic
-        fun getWithinRange(credits: Int): PlayerStatus
+        fun getStatusWithinRange(credits: Int): PlayerStatus
         {
             return VALUES.firstOrNull {
                 it.range.contains(credits)
