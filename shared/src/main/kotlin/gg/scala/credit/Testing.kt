@@ -11,20 +11,26 @@ import java.util.*
 
 fun main()
 {
-    val profiler = Profiler()
+    Thread {
+        val profiler = Profiler()
+        val player = CreditPlayer("CONSOLE", UUID.fromString(""))
 
-    profiler.start()
-    val player = CreditPlayer("CONSOLE", UUID.randomUUID())
-    player.credits = 2000
-    player.updateStatus()
-    profiler.stop()
+        profiler.start()
+        player.credits = 2000
+        player.updateStatus()
+        profiler.stop()
 
-    println("Player Credit: ${player.credits}")
-    println("Player Status: ${player.status}")
-    println("Took: ${profiler.getTime()} ms.")
-    player.credits = 1200
-    player.updateStatus()
+        println("Player Credit: ${player.credits}")
+        println("Player Status: ${player.status}")
+        println("Took: ${profiler.getTime()} ms.")
 
-    println("Player Credit: ${player.credits}")
-    println("Player Status: ${player.status}")
+        profiler.start()
+        player.credits = 1200
+        player.updateStatus()
+        profiler.stop()
+
+        println("Player Credit: ${player.credits}")
+        println("Player Status: ${player.status}")
+        println("Took: ${profiler.getTime()} ms.")
+    }.start()
 }
